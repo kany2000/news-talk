@@ -24,7 +24,7 @@ if _ffprobe and os.path.exists(_ffprobe):
 
 BASE = Path(__file__).resolve().parent
 AUDIO_DIR = BASE / "audio"
-IMG_DIR = BASE / "images"
+IMG_DIR = BASE / "images" / "第三期"
 OUTPUT_DIR = BASE / "output"
 AUDIO_DIR.mkdir(exist_ok=True)
 OUTPUT_DIR.mkdir(exist_ok=True)
@@ -58,6 +58,7 @@ def run_cmd(cmd, timeout=300, cwd=None):
 # ===== Step 1: 生成配图（已有则跳过）=====
 log("=== Step 1: 配图 ===")
 sys.path.insert(0, str(BASE))
+import gen_news_talk_images
 from gen_news_talk_images import generate_all
 
 # 检查是否所有图片已存在
@@ -69,6 +70,8 @@ if all_images_exist:
 else:
     missing = [img for img in expected_images if not (IMG_DIR / img).exists() or (IMG_DIR / img).stat().st_size <= 10000]
     log(f"缺失 {len(missing)} 张图: {missing}，生成中...")
+    # 设置输出目录为 images/第三期/
+    gen_news_talk_images.IMG_DIR = str(IMG_DIR)
     results = generate_all(TOPIC_TITLES)
     if not results:
         log("配图全部失败，退出")
@@ -181,18 +184,31 @@ if OUTPUT_VIDEO.exists():
 else:
     log("=== Step 4: 合成视频 ===")
 
-    # topic_idx → 图片
+    # topic_idx → 图片（用 posix 路径避免编码问题）
     topic_image_map = {
-        0: str(IMG_DIR / "intro.jpg"),
-        1: str(IMG_DIR / "01.jpg"),
-        2: str(IMG_DIR / "02.jpg"),
-        3: str(IMG_DIR / "03.jpg"),
-        4: str(IMG_DIR / "04.jpg"),
-        5: str(IMG_DIR / "05.jpg"),
-        6: str(IMG_DIR / "06.jpg"),
-        7: str(IMG_DIR / "07.jpg"),
-        8: str(IMG_DIR / "outro.jpg"),
+        0: str(IMG_DIR / "intro_hd.jpg"),
+        1: str(IMG_DIR / "01_hd.jpg"),
+        2: str(IMG_DIR / "02_hd.jpg"),
+        3: str(IMG_DIR / "03_hd.jpg"),
+        4: str(IMG_DIR / "04_hd.jpg"),
+        5: str(IMG_DIR / "05_hd.jpg"),
+        6: str(IMG_DIR / "06_hd.jpg"),
+        7: str(IMG_DIR / "07_hd.jpg"),
+        8: str(IMG_DIR / "outro_hd.jpg"),
     }
+
+    # 确保 HD 图片存在
+    for idx, path in topic_image_map.items():
+        orig = path.replace("_hd.jpg", ".jpg")
+        if not os.path.exists(orig):
+            log(f"⚠ 缺图: {orig}")
+            continue
+        if not os.path.exists(path):
+            run_cmd([
+                "ffmpeg", "-y", "-i", orig,
+                "-vf", "scale=1920:1080:force_original_aspect_ratio=1,pad=1920:1080:(ow-iw)/2:(oh-ih)/2",
+                "-q:v", "2", path
+            ], timeout=30)
 
     # 合并相邻同话题段
     image_segments = []
@@ -208,29 +224,14 @@ else:
     if current_topic is not None:
         image_segments.append((current_topic, current_start, segments_meta[-1]["end"]))
 
-    # 生成 HD 图片
-    for idx, path in topic_image_map.items():
-        if not os.path.exists(path):
-            log(f"⚠ 缺图: {path}")
-            continue
-        hd = path.replace(".jpg", "_hd.jpg")
-        if not os.path.exists(hd):
-            run_cmd([
-                "ffmpeg", "-y", "-i", path,
-                "-vf", "scale=1920:1080:force_original_aspect_ratio=1,pad=1920:1080:(ow-iw)/2:(oh-ih)/2",
-                "-q:v", "2", hd
-            ], timeout=30)
-
-    # 生成 concat 文件
+    # 生成 concat 文件（用 posix 路径 + UTF-8 编码）
     img_concat = BASE / "img_concat_ep3.txt"
-    with open(img_concat, "w") as f:
+    with open(img_concat, "w", encoding="utf-8") as f:
         for topic, start, end in image_segments:
             dur = end - start
             if dur < 0.3:
                 continue
-            img = topic_image_map.get(topic, "").replace(".jpg", "_hd.jpg")
-            if not os.path.exists(img):
-                img = topic_image_map.get(topic, "")
+            img = topic_image_map.get(topic, "")
             if not os.path.exists(img):
                 continue
             f.write(f"file '{img}'\nduration {dur:.3f}\n")

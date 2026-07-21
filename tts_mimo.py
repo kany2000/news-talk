@@ -16,7 +16,7 @@ API_URL = "https://api.xiaomimimo.com/v1/chat/completions"
 API_KEY = os.environ.get("MIMO_TTS_API_KEY", "")
 MODEL = "mimo-v2.5-tts"
 VOICE_FEMALE = "xiaoxiao"
-VOICE_MALE = "yunyang"
+VOICE_MALE = "yunjian"
 
 def gen_audio(text, output_path, voice_id=VOICE_FEMALE, timeout=120):
     """生成 TTS 音频并保存到文件"""

@@ -63,6 +63,8 @@ KEYWORD_PROMPTS = [
     ("能源", "renewable energy, solar panels, wind turbines, green technology, clean energy"),
     ("教育", "education technology, online learning, digital classroom, modern campus"),
     ("太空", "space exploration, rocket launch, SpaceX, NASA, stars, galaxy"),
+("损失", "financial loss concept, black and white, stock chart falling, solemn mood, abstract, no text, no words, no letters, cinematic lighting, 16:9"),
+    ("赌徒", "gambling concept, dice and cards, probability theory, abstract geometric pattern, no people, no hands, no text, no words, cinematic lighting, 16:9"),
 ]
 
 def gen_sensenova(prompt, timeout=120):
