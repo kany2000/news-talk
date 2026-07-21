@@ -24,7 +24,7 @@ if _ffprobe and os.path.exists(_ffprobe):
 
 BASE = Path(__file__).resolve().parent
 AUDIO_DIR = BASE / "audio"
-IMG_DIR = BASE / "images" / "第三期"
+IMG_DIR = BASE / "images" / EPISODE
 OUTPUT_DIR = BASE / "output"
 AUDIO_DIR.mkdir(exist_ok=True)
 OUTPUT_DIR.mkdir(exist_ok=True)
@@ -70,7 +70,7 @@ if all_images_exist:
 else:
     missing = [img for img in expected_images if not (IMG_DIR / img).exists() or (IMG_DIR / img).stat().st_size <= 10000]
     log(f"缺失 {len(missing)} 张图: {missing}，生成中...")
-    # 设置输出目录为 images/第三期/
+    # 设置输出目录为 images/{EPISODE}/
     gen_news_talk_images.IMG_DIR = str(IMG_DIR)
     results = generate_all(TOPIC_TITLES)
     if not results:
