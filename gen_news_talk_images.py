@@ -3,6 +3,12 @@
 import urllib.request, os, sys, json, io, time
 from PIL import Image
 
+# Windows GBK 兼容
+try:
+    sys.stdout.reconfigure(encoding='utf-8')
+except Exception:
+    pass
+
 # 从 .env 加载本地配置（仅开发环境）
 if os.path.exists(os.path.join(os.path.dirname(__file__), ".env")):
     with open(os.path.join(os.path.dirname(__file__), ".env")) as f:
