@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.cache/
+output/*.mp4
+output/*.srt
+audio/*.wav
+audio/*.mp3
+audio/*.json
+images/*.jpg
+cookies.json
+qrcode.png
+download.log
+concat*.txt
+img_concat.txt
