@@ -12,3 +12,4 @@ qrcode.png
 download.log
 concat*.txt
 img_concat.txt
+.env

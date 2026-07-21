@@ -3,12 +3,21 @@
 import urllib.request, os, sys, json, io, time
 from PIL import Image
 
+# 从 .env 加载本地配置（仅开发环境）
+if os.path.exists(os.path.join(os.path.dirname(__file__), ".env")):
+    with open(os.path.join(os.path.dirname(__file__), ".env")) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                os.environ.setdefault(k.strip(), v.strip())
+
 IMG_DIR = os.path.join(os.path.dirname(__file__), "images")
 os.makedirs(IMG_DIR, exist_ok=True)
 
 # Sensenova
 SENSENOVA_URL = "https://token.sensenova.cn/v1/images/generations"
-SENSENOVA_KEY = "sk-Orks5KCFxdjhRSm7EEFY57UdykEWzWIQ"
+SENSENOVA_KEY = os.environ.get("SENSENOVA_KEY", "")
 SENSENOVA_MODEL = "sensenova-u1-fast"
 SENSENOVA_SIZE = "2752x1536"
 

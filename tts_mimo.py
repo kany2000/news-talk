@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
 import urllib.request, json, os, time, sys
 
+# 从 .env 加载本地配置（仅开发环境）
+if os.path.exists(os.path.join(os.path.dirname(__file__), ".env")):
+    with open(os.path.join(os.path.dirname(__file__), ".env")) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                os.environ.setdefault(k.strip(), v.strip())
+
 API_URL = "https://api.mimovoice.com/v1/tts/synthesize"
-API_KEY = "sk-c6iihcqs7cldniegn6zkhi4rv5ea6balu913wbrrddeo5odm"
+API_KEY = os.environ.get("MIMO_TTS_API_KEY", "")
 MODEL = "mimo-v2.5-tts"
 VOICE_FEMALE = "xiaoxiao"
 VOICE_MALE = "yunyang"
