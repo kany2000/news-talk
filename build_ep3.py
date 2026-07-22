@@ -24,12 +24,12 @@ if _ffprobe and os.path.exists(_ffprobe):
 
 BASE = Path(__file__).resolve().parent
 AUDIO_DIR = BASE / "audio"
-IMG_DIR = BASE / "images" / EPISODE
 OUTPUT_DIR = BASE / "output"
 AUDIO_DIR.mkdir(exist_ok=True)
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 EPISODE = "第三期"
+IMG_DIR = BASE / "images" / EPISODE
 OUTPUT_VIDEO = OUTPUT_DIR / f"新闻大家谈_{EPISODE}_对话版.mp4"
 OUTPUT_SUB = OUTPUT_DIR / f"新闻大家谈_{EPISODE}_对话版_字幕.mp4"
 
@@ -98,7 +98,7 @@ else:
     sys.path.insert(0, str(BASE))
     from tts_mimo import gen_audio
 
-    VOICE_MAP = {"female": "xiaoxiao", "male": "yunyang"}
+    VOICE_MAP = {"female": "zh-CN-XiaoxiaoNeural", "male": "zh-CN-YunxiNeural"}
 
     segments_meta = []
     for i, (speaker, text, topic_idx) in enumerate(SCENE):
@@ -116,13 +116,19 @@ else:
             log(f"TTS FAILED: {e}")
             sys.exit(1)
 
-    # 取每段时长（wave 模块）
-    import wave as _wave
+    # 取每段时长（ffmpeg 读取 MP3 时长）
     for s in segments_meta:
-        with _wave.open(s["path"], "rb") as wf:
-            frames = wf.getnframes()
-            rate = wf.getframerate()
-            s["duration"] = frames / rate if rate else 0
+        r = subprocess.run([
+            "ffmpeg", "-i", s["path"], "-f", "null", "-"
+        ], capture_output=True, text=True, timeout=15)
+        for line in (r.stderr or "").splitlines():
+            if "Duration" in line:
+                parts = line.strip().split(",")[0].split("Duration:")[-1].strip()
+                h, m, sec = parts.split(":")
+                s["duration"] = int(h) * 3600 + int(m) * 60 + float(sec)
+                break
+        else:
+            s["duration"] = 0
 
     # 累计时间戳
     t = 0.0
