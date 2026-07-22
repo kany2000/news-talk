@@ -1,0 +1,151 @@
+1
+00:00:00,000 --> 00:00:11,160
+Welcome to News Talk, Episode 3. I'm Xiao Xiao. Today we're talking about something painfully relatable — why does a stock always drop the moment you buy it?
+
+2
+00:00:11,160 --> 00:00:20,880
+And I'm Yun Yang. This hits close to home. Or the World Cup — you bet on your favorite team, and they lose for sure, like clockwork.
+
+3
+00:00:20,880 --> 00:00:27,070
+Right! Today we're breaking this down through behavioral economics and psychology.
+
+4
+00:00:27,070 --> 00:00:33,530
+First up — confirmation bias. You remember losses way more vividly than wins.
+
+5
+00:00:33,530 --> 00:00:43,030
+Exactly. You buy a stock, it drops — that memory sticks. But you've also bought stocks that went up — those just get filtered out.
+
+6
+00:00:43,030 --> 00:00:53,520
+The story 'I buy, it drops' fits your emotional memory better. You tell your friends, you reinforce the narrative, and eventually you believe it's the universal truth.
+
+7
+00:00:53,520 --> 00:01:04,900
+Statistically, this is selective memory. You ignore the times you didn't buy and it went up, or you bought and it didn't drop. You only focus on the losing cases.
+
+8
+00:01:04,900 --> 00:01:12,000
+Number two — loss aversion. This is one of the most famous findings in behavioral economics.
+
+9
+00:01:12,000 --> 00:01:18,599
+Kahneman and Tversky showed that the pain of losing is about two to three times stronger than the pleasure of an equal gain.
+
+10
+00:01:18,599 --> 00:01:27,259
+So when your stock drops one percent, it hurts as much as a two to three percent gain feels good. That's why you panic-sell on a dip.
+
+11
+00:01:27,259 --> 00:01:37,269
+And then it rebounds. That's your 'I sell, it goes up' moment. It's not the universe mocking you — it's loss aversion driving your behavior.
+
+12
+00:01:37,269 --> 00:01:45,140
+And when it's going up, you FOMO in at the top, then it corrects — 'I buy, it drops.' Classic pattern.
+
+13
+00:01:45,140 --> 00:01:53,040
+Number three — the availability heuristic. The easier something is to recall, the more likely you think it is.
+
+14
+00:01:53,040 --> 00:02:03,100
+The media loves reporting 'retail investors wiped out' or 'market crash incoming' — it gets clicks. You see this every day and start believing losses are the norm.
+
+15
+00:02:03,100 --> 00:02:13,730
+The stock market trends upward over the long term, but media amplification makes risk feel omnipresent. The more anxious you are, the worse your decisions get.
+
+16
+00:02:13,730 --> 00:02:17,570
+Lesson one of investing: learn to tune out the noise.
+
+17
+00:02:17,570 --> 00:02:25,800
+Number four — the gambler's fallacy. If a stock goes up three days in a row, you think it has to drop on day four.
+
+18
+00:02:25,800 --> 00:02:36,910
+That's a classic probability mistake. Each move in an efficient market is independent — like a coin flip. Five heads in a row, the sixth is still fifty-fifty.
+
+19
+00:02:36,910 --> 00:02:44,640
+But our brains are pattern-seekers. We feel 'it's due for a correction' — so we sell, and then it keeps going up.
+
+20
+00:02:44,640 --> 00:02:49,660
+A lot of people who missed the big bull runs were victims of the gambler's fallacy.
+
+21
+00:02:49,660 --> 00:02:56,860
+World Cup betting adds another layer. When you bet on your favorite team, it's no longer about probability.
+
+22
+00:02:56,860 --> 00:03:07,540
+That's emotional bias. As a fan, your evaluation is anything but objective. You overestimate their strength and underestimate the opponent.
+
+23
+00:03:07,540 --> 00:03:15,890
+You tell yourself, 'I've supported them for years, they've got this' — but the team has no idea who you are and doesn't care if you bet on them.
+
+24
+00:03:15,890 --> 00:03:26,830
+There's also the illusion of control — you read the stats, analyzed the lineup, studied the odds, and convinced yourself you can predict the outcome. But soccer has massive randomness.
+
+25
+00:03:26,830 --> 00:03:38,230
+And remember, the house always wins. The bookmaker has the information advantage and the probability edge. Retail investors and gamblers are playing a rigged game.
+
+26
+00:03:38,230 --> 00:03:43,700
+Here's the funny part — your brain holds two contradictory biases at the same time.
+
+27
+00:03:43,700 --> 00:03:53,250
+You mean the hot hand fallacy and the gambler's fallacy? One says 'winning streak means you'll keep winning,' the other says 'winning streak means you're due for a loss.'
+
+28
+00:03:53,250 --> 00:04:04,600
+Exactly. Two opposite beliefs, and the same person can fall for both in different contexts. One makes you chase gains, the other makes you sell too early.
+
+29
+00:04:04,600 --> 00:04:11,080
+Plain and simple: human decisions are often driven by emotion and mental shortcuts, not rationality.
+
+30
+00:04:11,080 --> 00:04:14,370
+So how do we break free from all these biases?
+
+31
+00:04:14,370 --> 00:04:20,829
+First — admit you're irrational. Knowing you have these biases is already a defense.
+
+32
+00:04:20,829 --> 00:04:31,339
+Second — use systems, not gut feelings. Dollar-cost averaging is a great example — buy at regular intervals regardless of market conditions.
+
+33
+00:04:31,339 --> 00:04:41,729
+Third — reduce decision frequency. The more you trade, the more chances you have to make mistakes. Buffett says the best strategy is buy and hold.
+
+34
+00:04:41,729 --> 00:04:51,209
+Fourth — stay away from leverage and gambling. Don't invest or bet money you can't afford to lose. Fear will hijack your judgment.
+
+35
+00:04:51,209 --> 00:04:58,549
+Finally — zoom out. Over a five or ten year horizon, most short-term noise fades into background.
+
+36
+00:04:58,549 --> 00:05:08,459
+Bottom line: 'I buy, it drops' isn't your fault — it's how the human brain evolved. But understanding these biases is the first step to change.
+
+37
+00:05:08,459 --> 00:05:16,209
+That's all for this episode of News Talk. Whether you're investing or watching the game, stay rational and stay relaxed.
+
+38
+00:05:16,209 --> 00:05:21,349
+Hope your stocks go up and your teams win. See you next time!
