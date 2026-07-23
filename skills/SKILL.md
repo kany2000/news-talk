@@ -187,6 +187,52 @@ FFmpeg concat demuxer 合成 + 烧录字幕（Wrap=0 自动换行）。
 - 时间线均分法（intro 20s → 7话题各~170s → outro 30s）图片切换与语音话题不对齐，但不影响观看体验
 - 如需精准话题对齐，方式 A（对话稿+MiMo TTS）仍是首选
 
+## 方式 C：已有音频 → 一键重制视频（Windows 环境）
+
+适合已有现成音频文件（如 AI 播客、录音），直接转写 + 配图 + 合成视频。
+
+### 流程
+
+```
+已有音频(.m4a/.mp3)
+      ↓
+ ffmpeg 转码 MP3
+      ↓
+ faster-whisper 转写 → SRT 字幕
+      ↓
+ Pollinations AI 生成配图 (intro + N话题 + outro)
+      ↓
+ FFmpeg 合成视频 (图片均分时长) + 烧录繁体字幕
+```
+
+### 使用方法
+
+```bash
+cd E:/projects/news-talk
+PYTHONIOENCODING=utf-8 python scripts/build_ep3.py
+```
+
+### 配置
+
+编辑 `scripts/build_ep3.py` 顶部：
+- `AUDIO_SRC` — 输入音频路径
+- `EPISODE` — 期数目录名
+- `TOPICS` — 话题列表（中文）
+- `TOPIC_EN_PROMPTS` — 对应英文配图 prompt（Pollinations 英文效果好）
+
+### 依赖
+
+- `ffmpeg` — 音视频处理
+- `faster-whisper` — 语音转写
+- `requests` + `PIL` — 图片生成
+- `opencc-python-reimplemented` — 简繁转换
+
+### 注意
+
+- Pollinations API 免费但偶发 SSL 错误，脚本会自动重试
+- 图片按总时长均分，不与语音话题精确对齐
+- 字幕用 `opencc s2t` 自动转繁体，支持手动编辑后重新转换
+
 ## 文件
 
 | 文件 | 用途 |
@@ -196,6 +242,7 @@ FFmpeg concat demuxer 合成 + 烧录字幕（Wrap=0 自动换行）。
 | `scripts/step3_compose.py` | ffmpeg 精准合成视频 + 烧录字幕（Wrap=0） |
 | `scripts/gen_outro_image.py` | PIL 绘制话题列表结尾图（outro_text.jpg） |
 | `scripts/../gen_news_talk_images.py` | Sensenova 配图引擎 |
+| `scripts/build_ep3.py` | 方式 C：已有音频 → 一键重制视频（含转写/配图/合成/简繁转换） |
 | `/home/kan/signal_pop/src/tts_mimo.py` | MiMo TTS API 封装（生产级） |
 | `sources/news_talk_epN_sources.txt` | NotebookLM 话题描述文件（方式 B） |
 | `audio/notebooklm_epN.mp3` | NotebookLM 生成播客音频（方式 B） |
@@ -203,7 +250,7 @@ FFmpeg concat demuxer 合成 + 烧录字幕（Wrap=0 自动换行）。
 
 ## 路径
 
-- 项目：`/home/kan/shared/news-talk/`
+- 项目：`/home/kan/shared/news-talk/`（Linux）或 `E:\projects\news-talk\`（Windows）
 - 音频：`audio/` | 配图：`images/` | 输出：`output/`
 - 脚本：`scripts/`
 - TTS 引擎：`/home/kan/signal_pop/src/tts_mimo.py`

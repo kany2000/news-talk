@@ -5,6 +5,7 @@ output/*.mp4
 output/*.srt
 audio/*.wav
 audio/*.mp3
+audio/*.m4a
 audio/*.json
 images/*.jpg
 cookies.json
@@ -13,3 +14,7 @@ download.log
 concat*.txt
 img_concat.txt
 .env
+# 期数目录（全部是生成内容）
+第三期/
+第四期/
+第五期/
