@@ -18,3 +18,19 @@ img_concat.txt
 第三期/
 第四期/
 第五期/
+
+# 耶鲁公开课系列 — 生成产物（保留 SRT/文案/脚本，忽略音视频/配图/封面）
+yale大学公开课系列讲谈/**/*.mp3
+yale大学公开课系列讲谈/**/*.m4a
+yale大学公开课系列讲谈/**/*.mp4
+yale大学公开课系列讲谈/**/images/
+yale大学公开课系列讲谈/**/cover/
+yale大学公开课系列讲谈/*.m4a
+yale大学公开课系列讲谈/img_concat.txt
+yale大学公开课系列讲谈/**/_zh_text.txt
+yale大学公开课系列讲谈/**/_en_template.srt
+yale大学公开课系列讲谈/**/_hd.jpg
+_chk*.jpg
+_seg*.mp3
+yale_sub_temp.srt
+yale_sub.srt
