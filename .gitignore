@@ -31,6 +31,13 @@ yale大学公开课系列讲谈/**/_zh_text.txt
 yale大学公开课系列讲谈/**/_en_template.srt
 yale大学公开课系列讲谈/**/_hd.jpg
 _chk*.jpg
-_seg*.mp3
+seg_*.mp3
 yale_sub_temp.srt
 yale_sub.srt
+yale_sub_temp_zh.srt
+
+# 临时工作区
+ep3_work/
+
+# 本机工作记录（不提交）
+.workbuddy/

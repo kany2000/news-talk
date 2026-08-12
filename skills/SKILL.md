@@ -171,10 +171,18 @@ FFmpeg concat demuxer 合成 + 烧录字幕（Wrap=0 自动换行）。
 - 必须用 ffprobe 取每段实际 duration 做 concat duration
 - topic_idx 合并相邻段归一图
 
+### ⚠️ TTS 多段拼接爆音（click/pop）
+- **症状**：逐句 TTS 分段 → 拼接成整段音频后，句子边界处偶发"音爆"（咔哒声）。
+- **根因**：TTS 每段首尾电平**不为零**（如段尾 62、段首 18770），直接 PCM 硬拼接时波形不连续 → 瞬态跳变。
+- **修复（必须）**：拼接前对每段首尾做 **20ms（480 samples @24kHz）线性淡入淡出**（渐变到 0），拼接点两侧均为 0 即无跳变。极短段整体乘 0.5 兜底。
+- 拼接后 `np.clip(..., -32767, 32767)` 防削波；峰值 <32767 即可。
+- 参考实现：`build_yale_ep3.py` 的 PCM 拼接逻辑（numpy concat + fade）。
+
 ### ⚠️ 字幕
 - 不用 faster-whisper（逐字时间戳有偏移）
 - 直接用 WAV 段的 ffprobe 时长做每句 SRT 时间戳，精度到毫秒
 - **字幕出屏/超长** — 长句字幕会被截断在屏幕外。修复：FFmpeg subtitle filter 加 `Wrap=0,ScreenAlignment=2,MarginV=40`。`Wrap=0` 启用自动换行，`MarginV=40` 底部留白，超长句自动折两行。已在 `step2_make_video.py`、`step3_compose.py`、`add_subtitles.py`、`news_talk_pipeline.py` 中统一修复。
+- **字体大小（用户偏好 2026-08-12）** — `FontSize=20` 过大影响观感，**下期起改小为 `FontSize=16`**；字体 `FontName=SimHei`。
 
 ### ⚠️ 结尾图
 - notebooklm login 认证约24-48小时过期
