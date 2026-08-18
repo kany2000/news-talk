@@ -35,9 +35,17 @@ seg_*.mp3
 yale_sub_temp.srt
 yale_sub.srt
 yale_sub_temp_zh.srt
+yale_sub_temp_ep4.srt
 
 # 临时工作区
 ep3_work/
+ep4_work/
+
+# 临时修复脚本（一次性，不入库）
+_fix_dict*.py
+
+# 第三方工具下载目录
+tools/
 
 # 本机工作记录（不提交）
 .workbuddy/
